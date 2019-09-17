@@ -1,6 +1,6 @@
 package com.example.userregistration.resources
 
-import com.example.userregistration.models.User
+import com.example.userregistration.models.hibernate.User
 import com.example.userregistration.services.UsersService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component

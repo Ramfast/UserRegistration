@@ -1,4 +1,4 @@
-package com.example.userregistration.models
+package com.example.userregistration.models.hibernate
 
 import org.springframework.lang.Nullable
 import javax.persistence.Entity
@@ -11,11 +11,11 @@ class User(
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
         val id : Long,
+        var ssn: String,
         var firstName : String,
         var lastName : String,
-        var userNamme : String,
-        var address : String,
+        var email : String,
+        var street : String,
         var zip : String,
-        @Nullable
         var city : String
 )
