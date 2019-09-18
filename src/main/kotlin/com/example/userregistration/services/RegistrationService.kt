@@ -1,9 +1,11 @@
 package com.example.userregistration.services
 
-import com.example.userregistration.models.fragments.UserAddress
-import com.example.userregistration.models.fragments.UserPersonalia
-import com.example.userregistration.models.fragments.UserSsn
-import com.example.userregistration.repositories.RedisRepository
+import com.example.userregistration.models.fragments.Address
+import com.example.userregistration.models.fragments.Personalia
+import com.example.userregistration.models.fragments.Ssn
+import com.example.userregistration.repositories.cache.AddressRedisRepository
+import com.example.userregistration.repositories.cache.PersonaliaRedisRepository
+import com.example.userregistration.repositories.cache.SsnRedisRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.util.*
@@ -11,25 +13,24 @@ import java.util.*
 @Service
 class RegistrationService {
     @Autowired
-    private lateinit var redisRepository: RedisRepository
+    private lateinit var ssnRepo: SsnRedisRepository
 
-    fun createRegistration(userSsn: UserSsn): String {
-        val uuid = UUID.randomUUID().toString()
-        // We could do some sort of validation of the ssn here to ensure the person actually exists.
-        redisRepository.putSsn(uuid, userSsn)
+    fun createRegistration(ssn: Ssn): UUID {
+        val uuid = UUID.randomUUID()
+        ssnRepo.save(uuid, ssn)
 
         return uuid
     }
 
-    fun registerUserPersonalia(userPersonalia: UserPersonalia) {
-        
+    fun registerPersonalia(uuid: UUID, personalia: Personalia) {
+        //personliaRepo.save(uuid, personalia)
     }
 
-    fun registerUserAddress(userAddress: UserAddress) {
-
+    fun registerAddress(uuid: UUID, address: Address) {
+        //addressRepo.save(uuid, address)
     }
 
-    fun finalizeUserRegistration() {
+    fun finalizeRegistration(uuid: UUID) {
 
     }
 }
