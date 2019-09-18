@@ -13,15 +13,15 @@ class SsnRedisRepository: CacheRepository<Ssn> {
     private val storeKey = "SSN"
 
     override fun save(uuid: UUID, obj: Ssn) {
-        redisRepository.operations.put(storeKey, uuid.toString(), obj)
+        redisRepository.operation().put(storeKey, uuid.toString(), obj.ssn)
     }
 
     override fun findAll(): List<*> {
-        return redisRepository.operations.values(storeKey)
+        return redisRepository.operation().values(storeKey)
     }
 
     override fun findByUuid(uuid: UUID): Ssn {
-        return redisRepository.operations.get(storeKey, uuid.toString()) as Ssn
+        return redisRepository.operation().get(storeKey, uuid.toString()) as Ssn
     }
 
     override fun update(uuid: UUID, obj: Ssn) {
@@ -29,6 +29,6 @@ class SsnRedisRepository: CacheRepository<Ssn> {
     }
 
     override fun delete(uuid: UUID) {
-        redisRepository.operations.delete(storeKey, uuid.toString())
+        redisRepository.operation().delete(storeKey, uuid.toString())
     }
 }

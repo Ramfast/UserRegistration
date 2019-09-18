@@ -3,16 +3,20 @@ package com.example.userregistration.repositories.cache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-@Repository
+@Component
 public class RedisRepository {
-    public HashOperations operations;
+    private HashOperations hashOperations;
     private RedisTemplate redisTemplate;
 
-    @Autowired
     public RedisRepository(RedisTemplate redisTemplate) {
         this.redisTemplate = redisTemplate;
-        this.operations = this.redisTemplate.opsForHash();
+        this.hashOperations = this.redisTemplate.opsForHash();
+    }
+
+    public HashOperations operation() {
+        return this.hashOperations;
     }
 }
