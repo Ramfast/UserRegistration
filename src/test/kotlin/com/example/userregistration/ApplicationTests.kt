@@ -11,6 +11,7 @@ class ApplicationTests {
 
 	@Test
 	fun contextLoads() {
+		// We don't take kindly to people who tests around here...
 	}
 
 }
