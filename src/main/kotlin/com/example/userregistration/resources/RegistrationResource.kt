@@ -3,6 +3,7 @@ package com.example.userregistration.resources
 import com.example.userregistration.models.Address
 import com.example.userregistration.models.Personalia
 import com.example.userregistration.models.Ssn
+import com.example.userregistration.models.User
 import com.example.userregistration.services.RegistrationService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
@@ -33,7 +34,7 @@ class RegistrationResource {
 
     @POST
     @Path("/{uuid}/address")
-    fun address(@PathParam("uuid") uuid: UUID, @Valid address: Address): Address {
+    fun address(@PathParam("uuid") uuid: UUID, @Valid address: Address): User {
         return registrationService.registerAddress(uuid, address)
     }
 

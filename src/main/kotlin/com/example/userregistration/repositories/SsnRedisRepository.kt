@@ -16,16 +16,10 @@ class SsnRedisRepository: CacheRepository<Ssn> {
         redisRepository.operation().put(storeKey, uuid.toString(), obj.ssn)
     }
 
-    fun findAll(): List<*> {
-        return redisRepository.operation().values(storeKey)
-    }
-
     override fun findByUuid(uuid: UUID): Ssn {
-        return redisRepository.operation().get(storeKey, uuid.toString()) as Ssn
-    }
+        val uuidString = redisRepository.operation().get(storeKey, uuid.toString()) as String
 
-    fun update(uuid: UUID, obj: Ssn) {
-        save(uuid, obj)
+        return Ssn(uuidString)
     }
 
     override fun delete(uuid: UUID) {
