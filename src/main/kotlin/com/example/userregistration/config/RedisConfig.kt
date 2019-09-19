@@ -12,7 +12,7 @@ import org.springframework.data.redis.connection.RedisStandaloneConfiguration
 
 
 @Configuration
-class BeanConfig {
+class RedisConfig {
     @Autowired
     private lateinit var env: Environment
 
