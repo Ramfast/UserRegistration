@@ -1,5 +1,6 @@
 package com.example.userregistration.resources
 
+import com.example.userregistration.models.fragments.Address
 import com.example.userregistration.models.fragments.Personalia
 import com.example.userregistration.models.fragments.Ssn
 import com.example.userregistration.services.RegistrationService
@@ -26,7 +27,14 @@ class RegistrationResource {
 
     @POST
     @Path("/{uuid}/personalia")
-    fun personalia(@PathParam("uuid") uuid: UUID, @Valid personalia: Personalia) {
-        registrationService.registerPersonalia(uuid, personalia)
+    fun personalia(@PathParam("uuid") uuid: UUID, @Valid personalia: Personalia): Personalia {
+        return registrationService.registerPersonalia(uuid, personalia)
     }
+
+    @POST
+    @Path("/{uuid}/address")
+    fun address(@PathParam("uuid") uuid: UUID, @Valid address: Address): Address {
+        return registrationService.registerAddress(uuid, address)
+    }
+
 }

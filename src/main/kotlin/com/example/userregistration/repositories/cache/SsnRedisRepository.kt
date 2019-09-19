@@ -16,7 +16,7 @@ class SsnRedisRepository: CacheRepository<Ssn> {
         redisRepository.operation().put(storeKey, uuid.toString(), obj.ssn)
     }
 
-    override fun findAll(): List<*> {
+    fun findAll(): List<*> {
         return redisRepository.operation().values(storeKey)
     }
 
@@ -24,7 +24,7 @@ class SsnRedisRepository: CacheRepository<Ssn> {
         return redisRepository.operation().get(storeKey, uuid.toString()) as Ssn
     }
 
-    override fun update(uuid: UUID, obj: Ssn) {
+    fun update(uuid: UUID, obj: Ssn) {
         save(uuid, obj)
     }
 

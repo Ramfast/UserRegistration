@@ -14,6 +14,10 @@ import java.util.*
 class RegistrationService {
     @Autowired
     private lateinit var ssnRepo: SsnRedisRepository
+    @Autowired
+    private lateinit var personaliaRepo: PersonaliaRedisRepository
+    @Autowired
+    private lateinit var addressRepo: AddressRedisRepository
 
     fun createRegistration(ssn: Ssn): UUID {
         val uuid = UUID.randomUUID()
@@ -22,12 +26,14 @@ class RegistrationService {
         return uuid
     }
 
-    fun registerPersonalia(uuid: UUID, personalia: Personalia) {
-        //personliaRepo.save(uuid, personalia)
+    fun registerPersonalia(uuid: UUID, personalia: Personalia): Personalia {
+        personaliaRepo.save(uuid, personalia)
+        return personaliaRepo.findByUuid(uuid) // This redis read is not really necessary, but for now its a kind of validation that it actually persists.
     }
 
-    fun registerAddress(uuid: UUID, address: Address) {
-        //addressRepo.save(uuid, address)
+    fun registerAddress(uuid: UUID, address: Address): Address {
+        addressRepo.save(uuid, address)
+        return addressRepo.findByUuid(uuid)
     }
 
     fun finalizeRegistration(uuid: UUID) {
