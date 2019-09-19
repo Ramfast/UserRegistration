@@ -8,12 +8,12 @@
 		<version>2.1.7.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
+	<groupId>tech.innit</groupId>
 	<artifactId>UserRegistration</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>UserRegistration</name>
-	<description>A demo project for Spring Boot using Kotlin.</description>
+	<description>A simple user registration service using Kotlin and Redis.</description>
 
 	<properties>
 		<java.version>1.8</java.version>
