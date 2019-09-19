@@ -1,4 +1,4 @@
-package com.example.userregistration.repositories.cache;
+package com.example.userregistration.repositories;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;

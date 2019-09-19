@@ -1,4 +1,4 @@
-package com.example.userregistration.models.fragments
+package com.example.userregistration.models
 
 data class Personalia(
         val email: String,

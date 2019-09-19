@@ -1,11 +1,11 @@
 package com.example.userregistration.services
 
-import com.example.userregistration.models.fragments.Address
-import com.example.userregistration.models.fragments.Personalia
-import com.example.userregistration.models.fragments.Ssn
-import com.example.userregistration.repositories.cache.AddressRedisRepository
-import com.example.userregistration.repositories.cache.PersonaliaRedisRepository
-import com.example.userregistration.repositories.cache.SsnRedisRepository
+import com.example.userregistration.models.Address
+import com.example.userregistration.models.Personalia
+import com.example.userregistration.models.Ssn
+import com.example.userregistration.repositories.AddressRedisRepository
+import com.example.userregistration.repositories.PersonaliaRedisRepository
+import com.example.userregistration.repositories.SsnRedisRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.util.*

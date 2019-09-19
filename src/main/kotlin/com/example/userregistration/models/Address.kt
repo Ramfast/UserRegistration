@@ -1,4 +1,4 @@
-package com.example.userregistration.models.fragments
+package com.example.userregistration.models
 
 data class Address(
         val street: String,

@@ -1,4 +1,4 @@
-package com.example.userregistration.models.fragments
+package com.example.userregistration.models
 
 import org.hibernate.validator.constraints.Length
 import javax.validation.constraints.NotNull

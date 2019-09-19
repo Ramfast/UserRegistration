@@ -1,6 +1,6 @@
-package com.example.userregistration.repositories.cache
+package com.example.userregistration.repositories
 
-import com.example.userregistration.models.fragments.Address
+import com.example.userregistration.models.Address
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Repository
 import java.util.*
