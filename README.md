@@ -1,6 +1,6 @@
 # User Registration
 
-A demo microservice that handles the registration of a new users in steps.
+A Kotlin/Spring Boot demo microservice that handles the registration of a new users in steps.
 
 ### Setup
 
