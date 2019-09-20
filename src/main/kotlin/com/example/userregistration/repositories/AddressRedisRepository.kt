@@ -2,32 +2,36 @@ package com.example.userregistration.repositories
 
 import com.example.userregistration.models.Address
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.stereotype.Repository
 import java.util.*
 
 @Repository
-class AddressRedisRepository: CacheRepository<Address> {
+class AddressRedisRepository: RedisRepository, CacheRepository<Address> {
+    private val keyStreet = "ADDRESS_STREET"
+    private val keyZip = "ADDRESS_ZIP"
+    private val keyCity = "ADDRESS_CITY"
+
     @Autowired
-    private lateinit var redisRepository: RedisRepository
-    private val storeKey = "ADDRESS"
+    constructor(redisTemplate: RedisTemplate<Any, Any>) : super(redisTemplate)
 
     override fun save(uuid: UUID, obj: Address) {
-        redisRepository.operation().put(storeKey + "_STREET", uuid.toString(), obj.street)
-        redisRepository.operation().put(storeKey + "_ZIP", uuid.toString(), obj.zip)
-        redisRepository.operation().put(storeKey + "_CITY", uuid.toString(), obj.city)
+        super.operation().put(keyStreet, uuid.toString(), obj.street)
+        super.operation().put(keyZip, uuid.toString(), obj.zip)
+        super.operation().put(keyCity, uuid.toString(), obj.city)
     }
 
     override fun findByUuid(uuid: UUID): Address {
-        val street = redisRepository.operation().get(storeKey + "_STREET", uuid.toString()) as String
-        val zip = redisRepository.operation().get(storeKey + "_ZIP", uuid.toString()) as String
-        val city = redisRepository.operation().get(storeKey + "_CITY", uuid.toString()) as String
+        val street = super.operation().get(keyStreet, uuid.toString()) as String
+        val zip = super.operation().get(keyZip, uuid.toString()) as String
+        val city = super.operation().get(keyCity, uuid.toString()) as String
 
         return Address(street, zip, city)
     }
 
     override fun delete(uuid: UUID) {
-        redisRepository.operation().delete(storeKey + "_STREET", uuid.toString())
-        redisRepository.operation().delete(storeKey + "_ZIP", uuid.toString())
-        redisRepository.operation().delete(storeKey + "_CITY", uuid.toString())
+        super.operation().delete(keyStreet, uuid.toString())
+        super.operation().delete(keyZip, uuid.toString())
+        super.operation().delete(keyCity, uuid.toString())
     }
 }

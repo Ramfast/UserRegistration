@@ -2,27 +2,28 @@ package com.example.userregistration.repositories
 
 import com.example.userregistration.models.Ssn
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.stereotype.Repository
 import java.util.*
 
 @Repository
-class SsnRedisRepository: CacheRepository<Ssn> {
-    @Autowired
-    private lateinit var redisRepository: RedisRepository
+class SsnRedisRepository: RedisRepository, CacheRepository<Ssn> {
+    private val keySsn = "SSN"
 
-    private val storeKey = "SSN"
+    @Autowired
+    constructor(redisTemplate: RedisTemplate<Any, Any>) : super(redisTemplate)
 
     override fun save(uuid: UUID, obj: Ssn) {
-        redisRepository.operation().put(storeKey, uuid.toString(), obj.ssn)
+        super.operation().put(keySsn, uuid.toString(), obj.ssn)
     }
 
     override fun findByUuid(uuid: UUID): Ssn {
-        val uuidString = redisRepository.operation().get(storeKey, uuid.toString()) as String
+        val uuidString = super.operation().get(keySsn, uuid.toString()) as String
 
         return Ssn(uuidString)
     }
 
     override fun delete(uuid: UUID) {
-        redisRepository.operation().delete(storeKey, uuid.toString())
+        super.operation().delete(keySsn, uuid.toString())
     }
 }
