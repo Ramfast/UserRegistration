@@ -1,6 +1,6 @@
 # User Registration
 
-A microservice that handles the registration of a new users in steps.
+A demo microservice that handles the registration of a new users in steps.
 
 ### Setup
 
