@@ -1,0 +1,171 @@
+{
+	"info": {
+		"_postman_id": "af22ca1e-5cc4-4114-b699-388848c5ccbb",
+		"name": "UserRegistration",
+		"description": "API documentation for UserRegistration service.\n\nPlease review the environment variables that exists.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Ping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:{{port}}/ping",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"ping"
+					]
+				},
+				"description": "Ensure that the service is responding."
+			},
+			"response": []
+		},
+		{
+			"name": "POST Ssn (Start registration)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ssn\": \"25038935782\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:{{port}}/registration",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"registration"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Step 1. Initiate registration by posting ssn. You will recieve an uuid in response, that will need to be provided as a URL param subsequent requests."
+			},
+			"response": []
+		},
+		{
+			"name": "POST Personalia",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"myname@innit.no\",\n\t\"firstName\": \"My\",\n\t\"lastName\": \"Name\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:{{port}}/registration/{{uuid}}/personalia",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"registration",
+						"{{uuid}}",
+						"personalia"
+					]
+				},
+				"description": "Step 2: Post personlia."
+			},
+			"response": []
+		},
+		{
+			"name": "POST Address",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"street\": \"Storhamargata 44\",\n\t\"zip\": \"2317\",\n\t\"city\": \"Hamar\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:{{port}}/registration/{{uuid}}/address",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"registration",
+						"{{uuid}}",
+						"address"
+					]
+				},
+				"description": "Step 3: Post address informatino. You will recieve a complete representation of a user in response."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "6cea2fdb-b91e-443c-abe1-7e5f9a598160",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "425dd585-f933-4423-ab95-9a52c1d75fb3",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "40683879-a430-4f8b-8216-3d65a10cd758",
+			"key": "uuid",
+			"value": "cf3e7992-993a-4c36-bbe4-66c632339346",
+			"type": "string"
+		},
+		{
+			"id": "1ec917e2-405f-431f-9b45-fd2d4ea300e3",
+			"key": "port",
+			"value": "8080",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
